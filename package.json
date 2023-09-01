@@ -1,0 +1,96 @@
+{
+    "name": "@vgcpaulino/mountebank-tests",
+    "version": "2.9.1",
+    "description": "Over the wire test doubles",
+    "homepage": "http://www.mbtest.org",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/vgcpaulino/mountebank-tests.git"
+    },
+    "bugs": {
+        "url": "https://github.com/vgcpaulino/mountebank-tests/issues"
+    },
+    "bin": {
+        "mb": "./bin/mb"
+    },
+    "main": "./src/mountebank.js",
+    "scripts": {
+        "jsdoc": "jsdoc src/**/*.js --destination docs --configure .jsdoc --pedantic --readme CONTRIBUTING.md --package package.json",
+        "lint": "eslint src/ tasks/ test/ mbTest/ bin/mb && node tasks/lints/licenseCheck.js && node tasks/lints/deadCheck.js && node tasks/lints/objectCheck.js",
+        "test:api": "node tasks/mbtest.js api",
+        "test:cli": "cd mbTest && npm run cli",
+        "test:unit": "mocha --forbid-only --forbid-pending --reporter mocha-multi-reporters --reporter-options configFile=test/config.json 'test/**/*.js'",
+        "test:cover": "nyc --reporter=lcov --reporter=text --include='src/**' --exclude='src/public/**' npm run test:unit",
+        "test:js": "cd mbTest && npm run js",
+        "test:perf": "cd mbTest && npm run perf",
+        "test:web": "node tasks/mbtest.js web",
+        "test": "npm run lint && npm run test:cover && npm run test:api && npm run test:cli && npm run test:js"
+    },
+    "files": [
+        "bin",
+        "src",
+        "package.json",
+        "package-lock.json",
+        "README.md",
+        "LICENSE",
+        "releases.json"
+    ],
+    "keywords": [
+        "test",
+        "stub",
+        "mock",
+        "double",
+        "smtp",
+        "email",
+        "http",
+        "https",
+        "tcp",
+        "net",
+        "service virtualization"
+    ],
+    "dependencies": {
+        "@xmldom/xmldom": "0.8.10",
+        "cors": "2.8.5",
+        "csv-parse": "5.4.0",
+        "ejs": "3.1.9",
+        "errorhandler": "1.5.1",
+        "escape-html": "1.0.3",
+        "express": "4.18.2",
+        "fs-extra": "11.1.1",
+        "http-proxy-agent": "7.0.0",
+        "https-proxy-agent": "7.0.1",
+        "jsonpath-plus": "7.2.0",
+        "mailparser": "3.6.5",
+        "mountebank-formatters": "0.0.2",
+        "nodemailer": "6.9.4",
+        "prom-client": "14.2.0",
+        "proper-lockfile": "4.1.2",
+        "safe-regex": "^2.1.1",
+        "safe-stable-stringify": "2.4.3",
+        "smtp-server": "3.13.0",
+        "winston": "3.10.0",
+        "xpath": "0.0.33",
+        "yargs": "17.7.2"
+    },
+    "devDependencies": {
+        "coveralls": "3.1.1",
+        "eslint": "8.47.0",
+        "eslint-plugin-node": "11.1.0",
+        "firebase-tools": "12.5.0",
+        "jsdoc": "4.0.2",
+        "jsdom": "21.1.1",
+        "license-checker": "25.0.1",
+        "mocha": "10.2.0",
+        "mocha-multi-reporters": "1.5.1",
+        "nc": "1.0.3",
+        "nyc": "^15.1.0",
+        "snyk": "1.1206.0",
+        "w3cjs": "0.4.0",
+        "mbTest": "file:./mbTest"
+    },
+    "engines": {
+        "node": ">=16"
+    },
+    "snyk": true
+}
